@@ -11,7 +11,10 @@ const useLogin = () => {
     setLoading(true);
     setError(null);
     try {
-      await loginUserApi(credentials);
+      const data = await loginUserApi(credentials);
+      if(data.token){
+        localStorage.setItem("authToken",data.token)
+      }
       toast.success("Login successfull.", {
         className: "text-green-500 text-base",
       });

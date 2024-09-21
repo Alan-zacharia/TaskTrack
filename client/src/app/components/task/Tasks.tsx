@@ -4,6 +4,8 @@ import { Input } from "@/components/ui/input";
 import { MdDelete, MdEdit } from "react-icons/md";
 
 const Tasks = () => {
+  const handleTaskEdit = () => {};
+  const handleTaskDelete = () => {};
   return (
     <div className="flex flex-col h-full">
       <div className="flex md:flex-row items-center mb-5">
@@ -31,7 +33,7 @@ const Tasks = () => {
               <th>Actions</th>
             </tr>
           </thead>
-          {[1].map((item , index) => (
+          {[1].map((item, index) => (
             <tbody key={index}>
               <tr className="border-gray-300">
                 <th>
@@ -49,10 +51,13 @@ const Tasks = () => {
                 </td>
                 <td>10-11-2024</td>
                 <td>
-                  <button className="text-blue-500">
-                    <MdEdit size={22} />   
+                  <button className="text-blue-500" onClick={handleTaskEdit}>
+                    <MdEdit size={22} />
                   </button>
-                  <button className="text-red-500 ml-2">
+                  <button
+                    className="text-red-500 ml-2"
+                    onClick={handleTaskDelete}
+                  >
                     <MdDelete size={22} />
                   </button>
                 </td>

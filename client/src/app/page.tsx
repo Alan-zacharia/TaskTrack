@@ -1,21 +1,20 @@
 "use client";
-import { Input } from "@/components/ui/input";
 import SideBar from "./components/sidebar/Sidebar";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Button } from "@/components/ui/button";
-import { MdDelete, MdEdit } from "react-icons/md";
+
 import NavBar from "./components/shared/NavBar";
 import Tasks from "./components/task/Tasks";
+import { useEffect } from "react";
+import axiosInstance from "./api/axios";
 
 export default function Home() {
+  useEffect(()=>{
+    axiosInstance.get("http://localhost:4000/api/tasks").then((response)=>{
+      console.log(response)
+    }).catch((error)=>{
+      console.log(error)
+    })
+  },[]);
+  
   return (
     <main className="relative overflow-auto lg:overflow-hidden h-screen">
       <NavBar />

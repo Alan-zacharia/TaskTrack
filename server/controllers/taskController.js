@@ -3,6 +3,7 @@ import {
 } from "../models/taskModel.js"
 
 const getTaskController = async (req, res, next) => {
+    console.log("Get taks...")
     const userId = req.user ? req.user.id : null;
     try {
         if (!userId) {
