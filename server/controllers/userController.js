@@ -95,6 +95,15 @@ const registerUserController = async (req, res, next) => {
         next(error)
     }
 }
+const logoutUserController = async (req, res, next) => {
+    console.log("Logout controller..")
+    try {
+        res.clearCookie("refreshToken")
+        return res.status(200).json({message:"Logout successfull."})
+    } catch (error) {
+        next(error)
+    }
+}
 const refreshTokenController = async (req, res, next) => {
     const refreshToken = req.cookies.refreshToken;
     if (!refreshToken) {
@@ -119,5 +128,6 @@ const refreshTokenController = async (req, res, next) => {
 export {
     registerUserController,
     loginUserController,
-    refreshTokenController
+    refreshTokenController,
+    logoutUserController
 }

@@ -1,5 +1,5 @@
 import { MdDashboard } from "react-icons/md";
-import { IoStatsChartSharp , IoSettingsSharp } from "react-icons/io5";
+import { IoStatsChartSharp  } from "react-icons/io5";
 
 export const SIDEBAR_NAVIGATIONS = [
     {
@@ -11,10 +11,5 @@ export const SIDEBAR_NAVIGATIONS = [
         title : "Statistics",
         icon : <IoStatsChartSharp/>,
         path : "/statistics",
-    },
-    {
-        title : "Settings",
-        icon : <IoSettingsSharp/>,
-        path : "/settings",
     },
 ];

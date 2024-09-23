@@ -26,3 +26,4 @@ export const registerUserApi = async (credentials: UserCredentialType) : Promise
     throw error;
   }
 };
+

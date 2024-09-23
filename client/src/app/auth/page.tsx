@@ -12,12 +12,14 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import RegisterPage from "../components/register/RegisterPage";
 import useLogin from "../hooks/useLogin";
 import { useRouter } from "next/navigation";
+import useAuth from "../utils/useAuth";
+import Loading from "../components/shared/Loading";
 
 const formSchema = zod.object({
   email: zod.string().email(),
@@ -29,8 +31,18 @@ const formSchema = zod.object({
 const LoginPage = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
+  const [pageLoading, setLoading] = useState(true);
   const { error, loading, login } = useLogin();
   const router = useRouter();
+  const { Login, isAuthenticated } = useAuth();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.push("/"); 
+    } else {
+      setLoading(false);
+    }
+  }, [isAuthenticated, router]);
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -41,15 +53,20 @@ const LoginPage = () => {
   });
 
   const handleSubmit = (data: zod.infer<typeof formSchema>) => {
-   login(data).then(()=>{
-    setTimeout(()=>{
-      router.push("/")
-    },500)
-   })
+    login(data).then(() => {
+      Login();
+      setTimeout(() => {
+        router.push("/");
+      }, 500);
+    });
   };
 
   const handleRegister = () => setIsLogin(false);
   const handleLogin = () => setIsLogin(true);
+
+  if (pageLoading) {
+    return <Loading/>; 
+  }
 
   return (
     <main className="h-screen flex justify-center items-center bg-gray-100">

@@ -4,7 +4,7 @@ import {
 
 const getTaskController = async (req, res, next) => {
     console.log("Get taks...")
-    const userId = req.user ? req.user.id : null;
+    const userId = req.userId ? req.userId : null;
     try {
         if (!userId) {
             return res.status(400).json({

@@ -8,7 +8,6 @@ import {
 
 const authMiddleware = async (req, res, next) => {
     const autheHeader = req.headers.authorization;
-    console.log(autheHeader)
     if (autheHeader) {
         const token = autheHeader.split(" ")[1];
         const {

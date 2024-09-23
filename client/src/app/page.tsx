@@ -3,18 +3,39 @@ import SideBar from "./components/sidebar/Sidebar";
 
 import NavBar from "./components/shared/NavBar";
 import Tasks from "./components/task/Tasks";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axiosInstance from "./api/axios";
+import withAuth from "./hooks/withAuth";
+import useAuth from "./utils/useAuth";
+import { useRouter } from "next/navigation";
+import Loading from "./components/shared/Loading";
 
-export default function Home() {
-  useEffect(()=>{
-    axiosInstance.get("http://localhost:4000/api/tasks").then((response)=>{
-      console.log(response)
-    }).catch((error)=>{
-      console.log(error)
-    })
-  },[]);
-  
+const Home = () => {
+  const { isAuthenticated } = useAuth();
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    if (!isAuthenticated) {
+      setLoading(true);
+    } else {
+      setLoading(false);
+    }
+  }, [isAuthenticated]);
+
+  useEffect(() => {
+
+      axiosInstance
+      .get("http://localhost:4000/api/tasks")
+      .then(() => {})
+      .catch((error) => {
+        console.log("Error in get ", error);
+      });
+
+  }, []);
+
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <main className="relative overflow-auto lg:overflow-hidden h-screen">
       <NavBar />
@@ -26,4 +47,5 @@ export default function Home() {
       </div>
     </main>
   );
-}
+};
+export default withAuth(Home);

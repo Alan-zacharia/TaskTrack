@@ -1,9 +1,11 @@
 import axios from "axios";
+import {  userLogout } from "../constants/logout";
 
 const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
   withCredentials: true,
 });
+
 
 axiosInstance.interceptors.request.use(
   (config) => {
@@ -33,12 +35,13 @@ axiosInstance.interceptors.response.use(
         originalRequest.headers.Authorization = `Bearer ${newToken}`;
         return axiosInstance(originalRequest);
       } catch (refreshError) {
-        console.error("Token refresh failed:", refreshError);
+        await userLogout(null)
       }
     }
 
     return Promise.reject(error);
   }
 );
+
 
 export default axiosInstance;
