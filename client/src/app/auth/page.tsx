@@ -147,7 +147,7 @@ const LoginPage = () => {
                     className="text-end underline text-xs"
                     onClick={handleRegister}
                   >
-                    Don't have an account? Register
+                    Donot have an account? Register
                   </button>
                   <Button type="submit" className="w-full" disabled={loading}>
                     Submit

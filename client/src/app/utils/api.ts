@@ -26,7 +26,7 @@ export const loginUserApi = async (
 };
 export const registerUserApi = async (
   credentials: UserCredentialType
-): Promise<any> => {
+): Promise<{message : string}> => {
   try {
     const response = await axios.post(`${API_URL}/api/register`, {
       credentials,

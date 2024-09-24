@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   BarChart,
   Bar,
@@ -13,7 +13,6 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import Loading from "../shared/Loading";
-import { getTaskStatsApi } from "@/app/utils/api";
 import { StatisticsData } from "@/app/types/types";
 
 interface StatisticPropsType {
