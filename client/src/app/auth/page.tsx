@@ -22,8 +22,8 @@ import Loading from "../components/shared/Loading";
 
 const formSchema = zod.object({
   email: zod.string().email(),
-  password: zod.string().min(6, {
-    message: "Password must be at least 6 characters.",
+  password: zod.string().min(8, {
+    message: "Password must be at least 8 characters.",
   }),
 });
 
