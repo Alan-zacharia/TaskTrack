@@ -8,7 +8,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as zod from "zod";
@@ -78,11 +77,11 @@ const RegisterPage: React.FC<RegisterPageType> = ({ handleLogin }) => {
             <FormItem>
               <FormLabel htmlFor="username">Username</FormLabel>
               <FormControl>
-                <Input
+                <input
                   type="text"
                   placeholder="Enter your username...."
                   {...field}
-                  className="border rounded-md px-3 py-2 "
+                  className="border rounded-md px-3 py-2 w-full"
                 />
               </FormControl>
               <FormMessage />
@@ -96,11 +95,11 @@ const RegisterPage: React.FC<RegisterPageType> = ({ handleLogin }) => {
             <FormItem>
               <FormLabel htmlFor="email">Email</FormLabel>
               <FormControl>
-                <Input
+                <input
                   type="email"
                   placeholder="Enter your email...."
                   {...field}
-                  className="border rounded-md px-3 py-2 "
+                  className="border rounded-md px-3 py-2 w-full"
                 />
               </FormControl>
               <FormMessage />
@@ -114,12 +113,12 @@ const RegisterPage: React.FC<RegisterPageType> = ({ handleLogin }) => {
             <FormItem className="relative">
               <FormLabel htmlFor="password">Password</FormLabel>
               <FormControl>
-                <Input
+                <input
                   id="password"
                   type={showPassword ? "text" : "password"}
                   placeholder="Enter your password..."
                   {...field}
-                  className="border rounded-md px-3 py-2 "
+                  className="border rounded-md px-3 py-2 w-full"
                 />
               </FormControl>
               {!showPassword ? (
@@ -146,12 +145,12 @@ const RegisterPage: React.FC<RegisterPageType> = ({ handleLogin }) => {
             <FormItem className="relative">
               <FormLabel htmlFor="confirmPassword">Confirm Password</FormLabel>
               <FormControl>
-                <Input
+                <input
                   id="confirmPassword"
                   type={showConfirmPassword ? "text" : "password"}
                   placeholder="Enter your password..."
                   {...field}
-                  className="border rounded-md px-3 py-2 "
+                  className="border rounded-md px-3 py-2 w-full"
                 />
               </FormControl>
               {!showConfirmPassword ? (
