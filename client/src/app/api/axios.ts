@@ -35,6 +35,7 @@ axiosInstance.interceptors.response.use(
         originalRequest.headers.Authorization = `Bearer ${newToken}`;
         return axiosInstance(originalRequest);
       } catch (refreshError) {
+        console.log(refreshError)
         await userLogout(null)
       }
     }

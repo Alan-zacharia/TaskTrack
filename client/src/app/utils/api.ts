@@ -14,7 +14,7 @@ axios.defaults.withCredentials = true;
 
 export const loginUserApi = async (
   credentials: Partial<UserCredentialType>
-): Promise<any> => {
+): Promise<{token : string}> => {
   try {
     const response = await axios.post(`${API_URL}/api/login`, {
       credentials,

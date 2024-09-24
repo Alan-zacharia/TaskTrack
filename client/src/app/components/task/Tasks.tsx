@@ -121,6 +121,7 @@ const Tasks: React.FC<TaskProps> = ({ tasks }) => {
       setNewTaskTitle("");
       setNewTaskDueDate("");
     } catch (error) {
+      console.log(error)
       setError("Failed to add task. Please try again.");
     }
   };
@@ -130,6 +131,7 @@ const Tasks: React.FC<TaskProps> = ({ tasks }) => {
       const res = await updateCompleteTaskApi(taskId);
       toast.success(res.message);
     } catch (error) {
+      console.log(error)
       toast.error("Failed to update task status. Please try again.");
     }
   };
