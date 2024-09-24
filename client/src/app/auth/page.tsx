@@ -10,7 +10,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -98,12 +97,12 @@ const LoginPage = () => {
                       <FormItem>
                         <FormLabel htmlFor="email">Email</FormLabel>
                         <FormControl>
-                          <Input
+                          <input
                             id="email"
                             type="email"
                             placeholder="Enter your email..."
                             {...field}
-                            className="border rounded-md px-3 py-2 "
+                            className="border rounded-md px-3 py-2 w-full"
                           />
                         </FormControl>
                         <FormMessage />
@@ -117,12 +116,12 @@ const LoginPage = () => {
                       <FormItem className="relative">
                         <FormLabel htmlFor="password">Password</FormLabel>
                         <FormControl>
-                          <Input
+                          <input
                             id="password"
                             type={showPassword ? "text" : "password"}
                             placeholder="Enter your password..."
                             {...field}
-                            className="border rounded-md px-3 py-2 "
+                            className="border rounded-md px-3 py-2 w-full "
                           />
                         </FormControl>
                         {!showPassword ? (

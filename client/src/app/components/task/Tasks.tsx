@@ -7,7 +7,6 @@ import {
 } from "@/app/utils/api";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { MdDelete, MdEdit } from "react-icons/md";
 import EditTaskModal from "./EditTaskModal";
@@ -121,7 +120,7 @@ const Tasks: React.FC<TaskProps> = ({ tasks }) => {
       setNewTaskTitle("");
       setNewTaskDueDate("");
     } catch (error) {
-      console.log(error)
+      console.log(error);
       setError("Failed to add task. Please try again.");
     }
   };
@@ -131,7 +130,7 @@ const Tasks: React.FC<TaskProps> = ({ tasks }) => {
       const res = await updateCompleteTaskApi(taskId);
       toast.success(res.message);
     } catch (error) {
-      console.log(error)
+      console.log(error);
       toast.error("Failed to update task status. Please try again.");
     }
   };
@@ -139,7 +138,7 @@ const Tasks: React.FC<TaskProps> = ({ tasks }) => {
   return (
     <div className="flex flex-col h-full text-black">
       <div className="flex md:flex-row items-center mb-5">
-        <Input
+        <input
           type="text"
           value={newTaskTitle}
           onChange={(e) => {
@@ -147,9 +146,9 @@ const Tasks: React.FC<TaskProps> = ({ tasks }) => {
             setNewTaskTitle(e.target.value);
           }}
           placeholder="Task Title"
-          className="mr-6 mt-2 md:mt-0 md:mr-5 text-black mb-2 md:mb-0"
+          className="mr-6 mt-2 md:mt-0 md:mr-5 text-black mb-2 md:mb-0 w-full border p-1 rounded-lg"
         />
-        <Input
+        <input
           type="date"
           value={newTaskDueDate}
           onChange={(e) => {
@@ -157,7 +156,7 @@ const Tasks: React.FC<TaskProps> = ({ tasks }) => {
             setNewTaskDueDate(e.target.value);
           }}
           min={getTodayDate()}
-          className="hidden lg:flex mr-6 mt-2 md:mt-0 md:mr-5 mb-2 md:mb-0 w-36"
+          className="hidden lg:flex mr-6 mt-2 md:mt-0 md:mr-5 mb-2 md:mb-0 w-40 border p-1 rounded-lg  text-sm"
         />
         <Button
           onClick={handleAddTask}
@@ -166,16 +165,16 @@ const Tasks: React.FC<TaskProps> = ({ tasks }) => {
           Add Task
         </Button>
       </div>
-      <Input
-          type="date"
-          value={newTaskDueDate}
-          onChange={(e) => {
-            setError("");
-            setNewTaskDueDate(e.target.value);
-          }}
-          min={getTodayDate()}
-          className=" mr-6 mt-2 md:mt-0 md:mr-5 mb-2 md:mb-0 w-36"
-        />
+      <input
+        type="date"
+        value={newTaskDueDate}
+        onChange={(e) => {
+          setError("");
+          setNewTaskDueDate(e.target.value);
+        }}
+        min={getTodayDate()}
+        className="lg:hidden  mr-6 mt-2 md:mt-0 md:mr-5 mb-2 md:mb-0 w-36 p-1 border rounded-lg text-sm"
+      />
       {error && <div className="text-red-500 text-sm">{error}</div>}
       <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-5">
         Tasks
