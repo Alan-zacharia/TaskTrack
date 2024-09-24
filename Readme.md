@@ -31,25 +31,27 @@ This is a simple task management application built with a Node.js backend and a 
    git clone https://github.com/Alan-zacharia/TaskTrack.git
    
 2. Set up the backend:
-   cd server
-   npm install
-
-3. Create a .env file in the backend directory and add your MongoDB URI:
-   ORIGIN_URL=""
-   DB_HOST=""
-   JWT_SECRET_KEY=""
-   JWT_REFRESH_SECRET_KEY=""
-
-4. Start the backend server
-   npm run dev.
+   1. cd server
+   2. npm install
+  
+3. Create a .env file in the backend directory and add your MongoDB URI :
+   1. ORIGIN_URL=""
+   2. DB_HOST=""
+   3. JWT_SECRET_KEY=""
+   4. JWT_REFRESH_SECRET_KEY=""
+  
+4. Start the backend server :
+   1. npm run dev.
    
 5. Set up the frontend
-   cd client
-   npm install
+  1. cd client
+  2. npm install
    
 6. Start the frontend development server
-   npm run dev   
+  1. npm run dev   
 
 
-Live Demo
+Live Demo :
+
+Link : https://task-track-lovat.vercel.app
 
