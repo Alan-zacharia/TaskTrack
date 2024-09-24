@@ -13,7 +13,7 @@ const withAuth = (WrappedComponent: React.ComponentType) => {
       }else if(isAuthenticated && pathname !== "/auth"){
         router.push("/")
       }
-    },[isAuthenticated , router])
+    },[isAuthenticated , router , pathname])
     
       return <WrappedComponent {...props}/>;
   };
