@@ -2,11 +2,13 @@
 
 import { SIDEBAR_NAVIGATIONS } from "@/app/constants/navigation";
 import useLogout from "@/app/hooks/useLogout";
-import { usePathname } from "next/navigation";
 import { RiLogoutBoxRFill } from "react-icons/ri";
 
-const SideBar = () => {
-  const pathname = usePathname();
+interface SideBarProps {
+  onViewChange : (newView: "dashboard" | "statistics")=> void;
+  view : "dashboard" | "statistics"
+}
+const SideBar: React.FC<SideBarProps> = ({ onViewChange, view }) => {
   const logout = useLogout();
   const handleLogout = async () => {
     await logout("Logout successfull...");
@@ -18,8 +20,15 @@ const SideBar = () => {
           {SIDEBAR_NAVIGATIONS.map((item, index) => (
             <li
               key={index}
+              onClick={() => {
+                if (item.title === "Statistics") {
+                  onViewChange("statistics");
+                } else if (item.title === "Dashboard") {
+                  onViewChange("dashboard");
+                }
+              }}
               className={`mb-4 hover:text-indigo-700 font-semibold cursor-pointer ${
-                pathname === item.path ? "text-indigo-700" : ""
+                view === item.title.toLowerCase() ? "text-indigo-700" : ""
               }`}
             >
               <div className="flex gap-2 items-center">

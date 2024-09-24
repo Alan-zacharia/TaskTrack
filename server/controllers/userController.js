@@ -99,7 +99,9 @@ const logoutUserController = async (req, res, next) => {
     console.log("Logout controller..")
     try {
         res.clearCookie("refreshToken")
-        return res.status(200).json({message:"Logout successfull."})
+        return res.status(200).json({
+            message: "Logout successfull."
+        })
     } catch (error) {
         next(error)
     }
@@ -111,15 +113,20 @@ const refreshTokenController = async (req, res, next) => {
             message: 'No refresh token provided'
         });
     }
-    const decoded = jwtVerifyToken(refreshToken, envConfiguredDatas.JWT_REFRESH_SECRET_KEY);
-    if (!decoded) {
+    const {
+        message,
+        decode
+    } = jwtVerifyToken(refreshToken, envConfiguredDatas.JWT_REFRESH_SECRET_KEY);
+    if (!decode) {
         return res.status(401).json({
             message: 'Invalid token'
         });
     }
     try {
-        const accessToken = jwtGenerateToken(decoded.userId);
-        return res.status(200).json({token : accessToken})
+        const accessToken = jwtGenerateToken(decode.userId);
+        return res.status(200).json({
+            token: accessToken
+        })
     } catch (error) {
         next(error)
     }

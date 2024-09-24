@@ -23,8 +23,6 @@ const useRegister = () => {
       } else {
         setError("An unexpected error occurred");
       }
-      console.log("jjkjkhj")
-      throw "Something went wrong."
     } finally {
       setLoading(false);
     }

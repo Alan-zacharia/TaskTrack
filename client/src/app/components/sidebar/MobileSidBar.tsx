@@ -2,20 +2,19 @@
 
 import { SIDEBAR_NAVIGATIONS } from "@/app/constants/navigation";
 import { GiHamburgerMenu } from "react-icons/gi";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-import { usePathname } from "next/navigation";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { IoLogOut } from "react-icons/io5";
+import useLogout from "@/app/hooks/useLogout";
 
-const MobileSideBar = () => {
-  const pathname = usePathname();
-
+interface NavBarProps {
+  onViewChange: (newView: "dashboard" | "statistics") => void;
+  view: "dashboard" | "statistics";
+}
+const MobileSideBar: React.FC<NavBarProps> = ({ onViewChange, view }) => {
+  const logout = useLogout();
+  const handleLogout = async () => {
+    await logout("Logout successfull...");
+  };
   return (
     <section>
       <Sheet key={"right"}>
@@ -25,14 +24,24 @@ const MobileSideBar = () => {
           </button>
         </SheetTrigger>
 
-        <SheetContent className="w-[250px] h-full bg-white text-black shadow-lg p-5 pt-16" side={"left"}>
+        <SheetContent
+          className="w-[250px] h-full bg-white text-black shadow-lg p-5 pt-16"
+          side={"left"}
+        >
           <ul className="text-black p-4 flex flex-col gap-4">
             {SIDEBAR_NAVIGATIONS.map((item, index) => (
               <li
                 key={index}
                 className={`mb-4 hover:text-indigo-700 font-semibold cursor-pointer ${
-                  pathname === item.path ? "text-indigo-700" : ""
+                  view === item.title.toLowerCase() ? "text-indigo-700" : ""
                 }`}
+                onClick={() => {
+                  if (item.title === "Statistics") {
+                    onViewChange("statistics");
+                  } else if (item.title === "Dashboard") {
+                    onViewChange("dashboard");
+                  }
+                }}
               >
                 <div className="flex gap-2 items-center">
                   <span className="text-xl">{item.icon}</span>
@@ -41,8 +50,11 @@ const MobileSideBar = () => {
               </li>
             ))}
             <li className="mb-4 hover:text-red-700 font-semibold cursor-pointer">
-              <div className="flex gap-2 items-center">
-                <span className="text-xl"><IoLogOut /></span>
+              <div className="flex gap-2 items-center"
+              onClick={handleLogout}>
+                <span className="text-xl">
+                  <IoLogOut />
+                </span>
                 <span className="text-[15px]">Logout</span>
               </div>
             </li>
