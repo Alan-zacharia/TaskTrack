@@ -120,14 +120,14 @@ const refreshTokenController = async (req, res, next) => {
     const {
         message,
         decode
-    } = jwtVerifyToken(refreshToken, envConfiguredDatas.JWT_REFRESH_SECRET_KEY);
+    } = await jwtVerifyToken(refreshToken, envConfiguredDatas.JWT_REFRESH_SECRET_KEY);
     if (!decode) {
         return res.status(401).json({
             message: 'Invalid token'
         });
     }
     try {
-        const accessToken = jwtGenerateToken(decode.userId);
+        const accessToken = await jwtGenerateToken(decode.userId);
         return res.status(200).json({
             token: accessToken
         })

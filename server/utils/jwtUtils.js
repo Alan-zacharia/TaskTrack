@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import envConfiguredDatas from "../config/envConfig.js";
 
-export const jwtGenerateToken = (userId) => {
+export const jwtGenerateToken =  (userId) => {
     const payload = {
         userId: userId
     }
