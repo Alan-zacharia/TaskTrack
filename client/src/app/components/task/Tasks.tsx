@@ -33,32 +33,23 @@ const Tasks: React.FC<TaskProps> = ({ tasks }) => {
   const today = new Date().setHours(0, 0, 0, 0);
 
   const overdueTasks =
-    tasks &&
-    tasks
-      .filter(
+    tasks?.filter(
         (task) => new Date(task.dueDate).getTime() < today && !task.completed
       )
       .sort(
         (a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()
-      );
+      ) || []
 
   const normalTasks =
-    tasks &&
-    tasks
-      .filter(
+    tasks?.filter(
         (task) => new Date(task.dueDate).getTime() >= today && !task.completed
       )
       .sort(
         (a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()
-      );
+      ) || []
 
   const completedTasks =
-    tasks &&
-    tasks
-      .filter((task) => task.completed)
-      .sort(
-        (a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()
-      );
+    tasks?.filter((task) => task.completed) || []
 
   const handleTaskEdit = (taskId: string) => {
     const taskToEdit = tasks && tasks.find((task) => task._id === taskId);
@@ -199,7 +190,7 @@ const Tasks: React.FC<TaskProps> = ({ tasks }) => {
               </tr>
             )}
 
-            {overdueTasks && overdueTasks.length > 0 && (
+            { overdueTasks.length > 0 && (
               <tr className="border-gray-200">
                 <td
                   colSpan={2}
@@ -221,7 +212,7 @@ const Tasks: React.FC<TaskProps> = ({ tasks }) => {
               </tr>
             )}
             {showOverdue &&
-              overdueTasks.map((item) => (
+             overdueTasks.map((item) => (
                 <tr className="bg-red-50 border-gray-300" key={item._id}>
                   <td>
                     <Checkbox
@@ -302,7 +293,7 @@ const Tasks: React.FC<TaskProps> = ({ tasks }) => {
                 </td>
               </tr>
             ))}
-            {completedTasks && completedTasks.length > 0 && (
+            {completedTasks.length > 0 && (
               <tr className="border-gray-200">
                 <td
                   colSpan={2}
@@ -323,7 +314,7 @@ const Tasks: React.FC<TaskProps> = ({ tasks }) => {
                 </td>
               </tr>
             )}
-            {showCompleted &&
+            {showCompleted && 
               completedTasks.map((item) => (
                 <tr
                   className="bg-gray-300 border-gray-300"

@@ -21,7 +21,7 @@ const EditTaskModal: React.FC<ModalProps> = ({ isOpen, onClose, onUpdate, task }
   useEffect(() => {
     if (task) {
       setTitle(task.title);
-      setDueDate(task.dueDate);
+      setDueDate(task.dueDate.split('T')[0])
     }
   }, [task]);
 
