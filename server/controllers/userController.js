@@ -98,7 +98,11 @@ const registerUserController = async (req, res, next) => {
 const logoutUserController = async (req, res, next) => {
     console.log("Logout controller..")
     try {
-        res.clearCookie("refreshToken")
+        res.clearCookie("refreshToken", {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "none", 
+        })
         return res.status(200).json({
             message: "Logout successfull."
         })

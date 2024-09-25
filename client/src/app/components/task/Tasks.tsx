@@ -302,7 +302,7 @@ const Tasks: React.FC<TaskProps> = ({ tasks }) => {
                 </td>
               </tr>
             ))}
-            {overdueTasks && overdueTasks.length > 0 && (
+            {completedTasks && completedTasks.length > 0 && (
               <tr className="border-gray-200">
                 <td
                   colSpan={2}
