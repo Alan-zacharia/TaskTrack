@@ -41,6 +41,7 @@ This is a simple task management application built with a Node.js backend and a 
    2. DB_HOST=""
    3. JWT_SECRET_KEY=""
    4. JWT_REFRESH_SECRET_KEY=""
+   5. NODE_ENV=""
   
 4. Start the backend server :
    1. npm run dev.
