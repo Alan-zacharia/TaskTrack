@@ -138,7 +138,7 @@ const Tasks: React.FC<TaskProps> = ({ tasks }) => {
   return (
     <div className="flex flex-col h-full text-black">
       <div className="flex md:flex-row items-center mb-5">
-        <input
+        <input 
           type="text"
           value={newTaskTitle}
           onChange={(e) => {

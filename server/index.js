@@ -19,9 +19,9 @@ const io = new Server(server, {
         methods: ["GET", "POST"],
     }
 })
-
+  
 app.use(express.json());
-app.use(cookieParser());
+app.use(cookieParser()); 
 app.use(cors({
     origin: envConfiguredDatas.ORIGIN_URL,
     credentials: true
