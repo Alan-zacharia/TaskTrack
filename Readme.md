@@ -28,7 +28,9 @@ This is a simple task management application built with a Node.js backend and a 
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/Alan-zacharia/TaskTrack.git
+   git clone https://github.com/Alan-zacharia/TaskTrack.git 
+   
+   1. cd TaskTrack
    
 2. Set up the backend:
    1. cd server
