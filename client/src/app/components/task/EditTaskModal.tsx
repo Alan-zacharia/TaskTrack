@@ -1,3 +1,4 @@
+import { getTodayDate } from '@/app/utils/DateFunctions';
 import { Button } from '@/components/ui/button';
 import React, { useState, useEffect } from 'react';
 
@@ -52,6 +53,7 @@ const EditTaskModal: React.FC<ModalProps> = ({ isOpen, onClose, onUpdate, task }
             value={dueDate}
             onChange={(e) => setDueDate(e.target.value)}
             className="w-full mb-4 p-2 border"
+            min={getTodayDate()}
           />
           <div className="flex justify-end space-x-2">
             <Button type="submit" className="hover:bg-blue-600 bg-blue-500 text-white px-4 py-2 rounded">
