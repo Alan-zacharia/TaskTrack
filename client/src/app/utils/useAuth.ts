@@ -9,10 +9,13 @@ interface AuthState {
 const useAuth = (): AuthState => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
     try {
-      const data = localStorage.getItem("authToken");
-      return !!data;
+      if (typeof window !== "undefined") {
+        const data = localStorage.getItem("authToken");
+        return !!data;
+      }
+      return false;
     } catch (error) {
-      console.error(error);
+      console.error(error)
       return false;
     }
   });
