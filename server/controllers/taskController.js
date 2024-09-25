@@ -192,9 +192,8 @@ const statusCalculator = async (userId) => {
         });
         const completedTasks = tasks.filter(task => task.completed);
         const totalTasks = tasks.length;
-
-        const currentDate = new Date();
-        const overdueTasks = tasks.filter(task => task.dueDate && new Date(task.dueDate) < currentDate);
+        const currentDate = new Date().setHours(0, 0, 0, 0);
+        const overdueTasks = tasks.filter(task => task.dueDate && new Date(task.dueDate) < currentDate && !task.completed);
 
         return {
             totalTasks,
